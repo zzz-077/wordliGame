@@ -65,6 +65,8 @@ button {
     height: 70px;
     border: 2px solid var(--detail_col);
     background-color: var(--main_bg_col);
+    color: var(--detail_col);
+    font-size: 1.75rem;
 }
 .keyboard_container {
     display: flex;

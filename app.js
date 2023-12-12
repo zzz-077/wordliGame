@@ -3,25 +3,30 @@
 /*==============================*/
 const keybinds = document.querySelectorAll(".key");
 const box = document.querySelectorAll(".box");
+
 let inputWordArr = [];
 function inputkeys() {
+    let keyValue
+    let i=0;
     keybinds.forEach((key) => {
         key.addEventListener("click", (e) => {
-            console.log(e.target.value);
-            inputWordArr.push(e.target.value);
+            keyValue = e.target.value;
+            inputWordArr.push(keyValue);
+            box[i].innerHTML=keyValue;
+            i++;
+            // return keyValue;
         });
+        console.log("after");
     });
-    return console.log(inputWordArr);
-}
-function inputWordBoxFunc() {
-    let i = 0;
-    while (i < 5 && i < box.length) {
-        box[i].innerHTML += 1;
-        console.log(box[i]);
-        console.log(item[i]);
-        i++;
-    }
 }
 inputkeys();
-console.log(inputWordArr);
-// inputWordBoxFunc();
+// function displayValues() {
+//     let k=0,n=6;
+//     for(let i=k;i<5;i++){
+//         box[i].innerHTML=1;
+//     }
+    
+// }
+// displayValues();
+
+// console.log(inputWordArr.length);
