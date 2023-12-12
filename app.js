@@ -3,30 +3,76 @@
 /*==============================*/
 const keybinds = document.querySelectorAll(".key");
 const box = document.querySelectorAll(".box");
-
 let inputWordArr = [];
+GuesWord = "TRUCK";
 function inputkeys() {
-    let keyValue
-    let i=0;
+    let keyValue,
+        index = -1;
+    check = false;
     keybinds.forEach((key) => {
-        key.addEventListener("click", (e) => {
-            keyValue = e.target.value;
-            inputWordArr.push(keyValue);
-            box[i].innerHTML=keyValue;
-            i++;
-            // return keyValue;
+        key.addEventListener("click", () => {
+            keyValue = key.value;
+            if (keyValue === "del" && index > -1) {
+                deleteValue(index);
+                index--;
+            } else if (keyValue === "ent" && inputWordArr.length == 5) {
+                console.log("keyValue: " + keyValue);
+            } else if (
+                keyValue != "del" &&
+                keyValue != "ent" &&
+                inputWordArr.length < 5
+            ) {
+                index++;
+                InputValue(keyValue, index);
+            }
+
+            console.log(inputWordArr);
         });
-        console.log("after");
     });
 }
 inputkeys();
-// function displayValues() {
-//     let k=0,n=6;
-//     for(let i=k;i<5;i++){
-//         box[i].innerHTML=1;
-//     }
-    
-// }
-// displayValues();
+function InputValue(val, index) {
+    inputWordArr.push(val);
+    box[index].innerHTML = val;
+}
 
-// console.log(inputWordArr.length);
+function deleteValue(index) {
+    inputWordArr.pop(index);
+
+    box[index].innerHTML = "";
+    console.log("Index:" + index);
+}
+function enterValue() {
+    let isAlreadyArr = [];
+    let p = true;
+    let colorCheck = true;
+
+    for (let i = 0; i < inputWordArr.length; i++) {
+        for (let j = 0; j < inputWordArr.length; j++) {
+            if (inputWordArr[i] == GuesWord[i]) {
+                for (let t = 0; t < isAlreadyArr.length; t++) {
+                    if (j == arr[t]) {
+                        p = false;
+                        break;
+                    }
+                }
+                if (p == false) {
+                    continue;
+                } else {
+                    isAlreadyArr.push(j);
+                    if (i == j) {
+                        console.log("add-Green");
+                    } else {
+                        console.log("add-Orange");
+                    }
+                    colorCheck = false;
+                }
+            } else {
+                continue;
+            }
+        }
+        if (colorCheck == true) {
+            console.log("add-Gray");
+        }
+    }
+}
