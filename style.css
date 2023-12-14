@@ -98,3 +98,17 @@ button {
     color: white;
     border-radius: 0.2rem;
 }
+
+.transition {
+    transition: all 1s;
+    transform: rotateX(360deg);
+}
+.green {
+    background-color: #58a351;
+}
+.yellow {
+    background-color: #b59f3b;
+}
+.gray {
+    background-color: #404041;
+}
