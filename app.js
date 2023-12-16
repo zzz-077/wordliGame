@@ -8,6 +8,7 @@ let keyValue,
 let columns = 5;
 let Prewcolumn = -1;
 let inputWordArr = [];
+let PreOrderedNum = 0;
 GuesWord = "TRUCK";
 
 function inputkeys() {
@@ -45,21 +46,24 @@ function deleteValue(index) {
     if (index > Prewcolumn) {
         inputWordArr.pop(index);
         box[index].innerHTML = "";
-        console.log("Index:" + index);
+        // console.log("Index:" + index);
     } else {
-        console.log("Index:" + index);
+        // console.log("Index:" + index);
     }
 }
 function enterValue() {
     let isAlreadyArr = [];
     const keybindsArray = Array.from(keybinds);
     const BoxArray = Array.from(box);
+
     for (let i = 0; i < inputWordArr.length; i++) {
         let greenKey;
         let yellowKey;
         let grayKey;
-        let p = true;
-        let colorCheck = true;
+        let p = true,
+            colorCheck = true;
+        let k = 0;
+        const uniqArr = new Set();
         for (let j = 0; j < inputWordArr.length; j++) {
             if (inputWordArr[i] == GuesWord[j]) {
                 for (let t = 0; t < isAlreadyArr.length; t++) {
@@ -73,8 +77,11 @@ function enterValue() {
                 } else {
                     isAlreadyArr.push(j);
                     if (i == j) {
-                        console.log("[" + i + "]: " + "add-Green");
-                        box[i].classList.add("transition", "green");
+                        // console.log("[" + i + "]: " + "add-Green");
+                        box[PreOrderedNum + i].classList.add(
+                            "transition",
+                            "green"
+                        );
                         if (
                             keybinds instanceof NodeList ||
                             Array.isArray(keybinds)
@@ -85,8 +92,12 @@ function enterValue() {
                             greenKey.classList.add("green");
                         }
                     } else {
-                        console.log("[" + i + "]: " + "add-Yellow");
-                        box[i].classList.add("transition", "yellow");
+                        // console.log("[" + i + "]: " + "add-Yellow");
+                        box[PreOrderedNum + i].classList.add(
+                            "transition",
+                            "yellow"
+                        );
+
                         if (
                             keybinds instanceof NodeList ||
                             Array.isArray(keybinds)
@@ -97,25 +108,38 @@ function enterValue() {
                             yellowKey.classList.add("yellow");
                         }
                     }
-
                     colorCheck = false;
                 }
             } else {
+                k++;
                 continue;
             }
         }
+        if (k == 5) {
+            uniqArr.add([inputWordArr[i]]);
+            k = 0;
+        }
+        let checkArr = [...uniqArr];
+
         if (colorCheck == true) {
-            console.log("[" + i + "]: " + "add-Gray");
-            box[i].classList.add("transition", "gray");
-            if (keybinds instanceof NodeList || Array.isArray(keybinds)) {
-                grayKey = keybindsArray.find((Key) => {
-                    return Key.value === inputWordArr[i];
-                });
-                grayKey.classList.add("gray");
+            // console.log("[" + i + "]: " + "add-Gray");
+            box[PreOrderedNum + i].classList.add("transition", "gray");
+            for (let k = 0; k < checkArr.length; k++) {
+                if (checkArr[i] != inputWordArr[i] || i == 0) {
+                    if (
+                        keybinds instanceof NodeList ||
+                        Array.isArray(keybinds)
+                    ) {
+                        grayKey = keybindsArray.find((Key) => {
+                            return Key.value === inputWordArr[i];
+                        });
+                        grayKey.classList.add("gray");
+                    }
+                }
             }
         }
     }
-    console.log(box.length);
+    // console.log(box.length);
     let newArr;
 
     if (box instanceof NodeList || Array.isArray(box)) {
@@ -129,4 +153,5 @@ function enterValue() {
     columns += 5;
     Prewcolumn += 5;
     inputWordArr = [];
+    PreOrderedNum += 5;
 }
