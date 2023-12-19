@@ -3,112 +3,255 @@ https://colorswall.com/palette/290499
 */
 
 :root {
-    --main_bg_col: #006a4f;
-    --detail_col: #d8d8d0;
-    --keyboard_col: #232323;
+  --main_bg_col: #006a4f;
+  --detail_col: #d8d8d0;
+  --keyboard_col: #232323;
 }
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--main_bg_col);
-    overflow: hidden;
+  background-color: var(--main_bg_col);
+  overflow: hidden;
 }
 button {
-    cursor: pointer;
-    border: 0;
+  cursor: pointer;
+  border: 0;
 }
-.banner_cont {
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--keyboard_col);
-}
-.banner_cont img {
-    width: 30%;
-    height: 100%;
-    object-fit: cover;
-}
+
 .full_container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 2rem;
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 2rem;
+  width: 100%;
 }
 
 .content {
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-    align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  align-items: center;
 }
 
 .display_boxes {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  gap: 8px;
 }
 .box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 70px;
-    border: 2px solid var(--detail_col);
-    background-color: var(--main_bg_col);
-    color: var(--detail_col);
-    font-size: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--detail_col);
+  background-color: var(--main_bg_col);
+  color: var(--detail_col);
+  font-size: 1.75rem;
 }
 .keyboard_container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
 }
 .col1 {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    width: 100%;
-    gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  gap: 4px;
 }
 .col1:nth-child(2),
 .col1:nth-child(3) {
-    grid-template-columns: repeat(9, 1fr);
-    padding: 0 1.25rem;
+  grid-template-columns: repeat(9, 1fr);
+  padding: 0 1.25rem;
 }
 .col1:nth-child(3) {
-    padding: 0;
+  padding: 0;
 }
 .key {
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 2px;
-    background-color: var(--keyboard_col);
-    color: white;
-    border-radius: 0.2rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 2px;
+  background-color: var(--keyboard_col);
+  color: white;
+  border-radius: 0.2rem;
 }
 
 .transition {
-    transition: all 1s;
-    transform: rotateX(360deg);
+  transition: all 1s;
+  transform: rotateX(360deg);
 }
 .green {
-    background-color: #58a351;
+  background-color: #58a351;
 }
 .yellow {
-    background-color: #b59f3b;
+  background-color: #b59f3b;
 }
 .gray {
-    background-color: #404041;
+  background-color: #404041;
+}
+
+/*=====================*/
+/*========MENU=========*/
+/*=====================*/
+
+.menu_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--keyboard_col);
+  width: 100%;
+  height: 100vh;
+  max-width: 100%;
+  padding: 0 2rem;
+  position: relative;
+  transition: all 0.3s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu_container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.exit_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1.25rem 1.25rem 0 0;
+}
+.exit_btn button {
+  background-color: rgba(0, 0, 0, 0);
+}
+.exit_btn button i {
+  font-size: 1.75rem;
+  color: rgba(255, 255, 255, 0.721);
+  transition: all 0.3s;
+}
+.exit_btn button:hover i {
+  color: var(--main_bg_col);
+}
+
+.menu_content {
+  width: 600px;
+  max-width: 600px;
+  margin: 0 auto;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+
+.menu_head {
+  text-align: center;
+  border-bottom: 1px solid white;
+  width: 60%;
+}
+.menu_head h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+.menu_stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.menu_stat_top {
+  margin-bottom: 0.5rem;
+}
+.menu_stat_top strong {
+  font-size: 2rem;
+}
+.menu_stat_top p {
+  font-size: 18px;
+}
+.menu_stat_bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.menu_stat_bottom p {
+  font-size: 18px;
+}
+.menu_stat_bottom ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  height: 140px;
+}
+.menu_stat_bottom ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.menu_stat_bottom ul li span {
+  font-size: 0.75rem;
+}
+.menu_stat_bottom ul li div {
+  width: 25px;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  align-items: end;
+  background-color: var(--main_bg_col);
+  animation: staticAnim 0.5s linear;
+}
+.menu_stat_bottom ul li:nth-child(1) div {
+  animation-delay: 0.4s;
+}
+.menu_stat_bottom ul li:nth-child(2) div {
+  animation-delay: 0.3s;
+}
+.menu_stat_bottom ul li:nth-child(3) div {
+  animation-delay: 0.2s;
+}
+.menu_stat_bottom ul li:nth-child(4) div {
+  animation-delay: 0.1s;
+}
+.menu_stat_bottom ul li:nth-child(5) div {
+  animation-delay: 0.05s;
+}
+@keyframes staticAnim {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 120px;
+  }
+}
+.menu_game_start {
+  text-align: center;
+  margin-top: 1rem;
+  width: 100%;
+  border-top: 1px solid white;
+}
+.menu_game_start button {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--main_bg_col);
+  color: white;
+  font-size: 1.2rem;
+  width: 70%;
+  transition: all 0.5s;
+}
+.menu_game_start button:hover {
+  background-color: #404041;
+  width: 80%;
 }
