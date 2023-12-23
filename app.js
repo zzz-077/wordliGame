@@ -3,6 +3,19 @@
 /*==============================*/
 const keybinds = document.querySelectorAll(".key");
 const box = document.querySelectorAll(".box");
+const exitBtn = document.querySelector("#exit_btn");
+const startBtn = document.querySelector("#start_btn");
+const menuContainer = document.querySelector(".menu_container");
+const fullContainer = document.querySelector(".full_container");
+const displayBoxes = document.querySelector(".display_boxes");
+const keyboardContainer = document.querySelector(".keyboard_container");
+
+startBtn.addEventListener("click", startFunc);
+// exitBtn.addEventListener("click", exitFunc);
+
+/*==============================*/
+/*=============VARIABLES============*/
+/*==============================*/
 let keyValue,
   index = -1;
 let columns = 5;
@@ -10,12 +23,80 @@ let Prewcolumn = -1;
 let inputWordArr = [];
 let PreOrderedNum = 0;
 let Retrycounter = 0;
+let greenKey;
+let yellowKey;
+let grayKey;
+let loseInterval;
+let winInterval;
+let sumK = 0;
+let score = 0;
+let stringifiedObject;
+let backToObject;
+let MaxScore = {
+  one: 0,
+  two: 0,
+  three: 0,
+  four: 3,
+  five: 5,
+  six: 6,
+};
+
 GuesWord = "TRUCK";
 
+document.addEventListener("DOMContentLoaded", () => {
+  stringifiedObject = JSON.stringify(MaxScore);
+  backToObject = JSON.parse(stringifiedObject);
+  console.log(backToObject);
+});
+
+/*==============================*/
+/*=============FUNCTIONS============*/
+/*==============================*/
+function startFunc() {
+  menuContainer.classList.add("active");
+  fullContainer.classList.add("active");
+  displayBoxes.classList.add("active");
+  keyboardContainer.classList.add("active");
+}
+
+function Reloading() {
+  for (let i = 0; i < box.length; i++) {
+    box[i].classList.remove("transition", "gray", "yellow", "green");
+    box[i].innerHTML = "";
+  }
+  for (let i = 0; i < keybinds.length; i++) {
+    keybinds[i].classList.remove("gray", "yellow", "green");
+  }
+  inputWordArr = [];
+  index = -1;
+  columns = 5;
+  Prewcolumn = -1;
+  PreOrderedNum = 0;
+  Retrycounter = 0;
+  sumK = 0;
+  score = 0;
+  clearInterval(loseInterval);
+  console.log("Restarted");
+}
+
+inputkeys();
+
+function winGame() {
+  console.log("YOU WIN");
+  menuContainer.classList.remove("active");
+  fullContainer.classList.remove("active");
+  clearInterval(winInterval);
+  Reloading();
+}
+
 function LoseGame() {
-  setInterval(() => {
-    alert("YOU LOSE TRY AGAIN!");
-  }, 1000);
+  loseInterval = setInterval(() => {
+    menuContainer.classList.remove("active");
+    fullContainer.classList.remove("active");
+    displayBoxes.classList.remove("active");
+    keyboardContainer.classList.remove("active");
+    Reloading();
+  }, 1700);
 }
 
 function inputkeys() {
@@ -39,15 +120,15 @@ function inputkeys() {
         index++;
         InputValue(keyValue, index);
       }
-
       console.log(inputWordArr);
       if (Retrycounter == 6) {
+        console.log("restarts from here");
         LoseGame();
       }
     });
   });
 }
-inputkeys();
+
 function InputValue(val, index) {
   inputWordArr.push(val);
   box[index].innerHTML = val;
@@ -57,20 +138,16 @@ function deleteValue(index) {
   if (index > Prewcolumn) {
     inputWordArr.pop(index);
     box[index].innerHTML = "";
-    // console.log("Index:" + index);
-  } else {
-    // console.log("Index:" + index);
   }
 }
 function enterValue() {
+  sumK = 0;
+  score++;
   let isAlreadyArr = [];
   const keybindsArray = Array.from(keybinds);
   const BoxArray = Array.from(box);
 
   for (let i = 0; i < inputWordArr.length; i++) {
-    let greenKey;
-    let yellowKey;
-    let grayKey;
     let p = true,
       colorCheck = true;
     let k = 0;
@@ -87,24 +164,28 @@ function enterValue() {
           continue;
         } else {
           isAlreadyArr.push(j);
+          /*===ADDING GREEN===*/
+          /*===ADDING YELLOW===*/
           if (i == j) {
-            // console.log("[" + i + "]: " + "add-Green");
+            sumK++;
             box[PreOrderedNum + i].classList.add("transition", "green");
             if (keybinds instanceof NodeList || Array.isArray(keybinds)) {
               greenKey = keybindsArray.find((Key) => {
                 return Key.value === inputWordArr[i];
               });
+              greenKey.classList.remove("yellow");
               greenKey.classList.add("green");
             }
           } else {
-            // console.log("[" + i + "]: " + "add-Yellow");
             box[PreOrderedNum + i].classList.add("transition", "yellow");
 
             if (keybinds instanceof NodeList || Array.isArray(keybinds)) {
               yellowKey = keybindsArray.find((Key) => {
                 return Key.value === inputWordArr[i];
               });
-              yellowKey.classList.add("yellow");
+              if (!yellowKey.classList.contains("green")) {
+                yellowKey.classList.add("yellow");
+              }
             }
           }
           colorCheck = false;
@@ -114,12 +195,14 @@ function enterValue() {
         continue;
       }
     }
+    // if(){
+    // }
     if (k == 5) {
       uniqArr.add([inputWordArr[i]]);
       k = 0;
     }
     let checkArr = [...uniqArr];
-
+    /*===ADDING GRAY===*/
     if (colorCheck == true) {
       // console.log("[" + i + "]: " + "add-Gray");
       box[PreOrderedNum + i].classList.add("transition", "gray");
@@ -143,9 +226,15 @@ function enterValue() {
       return obj;
     });
   }
-  console.log(newArr.length);
+  // console.log(newArr.length);
   columns += 5;
   Prewcolumn += 5;
   inputWordArr = [];
   PreOrderedNum += 5;
+
+  if (sumK == 5) {
+    winInterval = setInterval(() => {
+      winGame();
+    }, 1700);
+  }
 }
