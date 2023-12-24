@@ -9,6 +9,8 @@ const menuContainer = document.querySelector(".menu_container");
 const fullContainer = document.querySelector(".full_container");
 const displayBoxes = document.querySelector(".display_boxes");
 const keyboardContainer = document.querySelector(".keyboard_container");
+const scoreBoxes = document.querySelectorAll(".scoreBoxes");
+const menuStatTopStr = document.querySelector(".menu_stat_top strong");
 
 startBtn.addEventListener("click", startFunc);
 // exitBtn.addEventListener("click", exitFunc);
@@ -30,25 +32,23 @@ let loseInterval;
 let winInterval;
 let sumK = 0;
 let score = 0;
-let stringifiedObject;
-let backToObject;
-let MaxScore = {
-  one: 0,
-  two: 0,
-  three: 0,
-  four: 3,
-  five: 5,
-  six: 6,
-};
+let ScoreTable = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
+  GuesWord = "TRUCK";
+let StoragedObject;
+let playedValue = 0;
 
-GuesWord = "TRUCK";
-
+/*==============================*/
+/*=============LOCALSTORAGES============*/
+/*==============================*/
 document.addEventListener("DOMContentLoaded", () => {
-  stringifiedObject = JSON.stringify(MaxScore);
-  backToObject = JSON.parse(stringifiedObject);
-  console.log(backToObject);
+  if (!localStorage.getItem("scoretable")) {
+    StoragedObject = JSON.stringify(ScoreTable);
+    localStorage.setItem("scoretable", StoragedObject);
+  }
+  // if (!localStorage.getItem("playedValue")) {
+  //   localStorage.setItem("playedValue");
+  // }
 });
-
 /*==============================*/
 /*=============FUNCTIONS============*/
 /*==============================*/
@@ -80,12 +80,19 @@ function Reloading() {
 }
 
 inputkeys();
-
+localStorage.clear();
 function winGame() {
+  ScoreTable[score]++;
+  StoragedObject = JSON.stringify(ScoreTable);
+  let backFromLocalStorage = localStorage.getItem("scoretable");
+  let parsedScoreTable = JSON.parse(backFromLocalStorage);
+  parsedScoreTable[score] += 1;
+  localStorage.setItem("scoretable", JSON.stringify(parsedScoreTable));
   console.log("YOU WIN");
   menuContainer.classList.remove("active");
   fullContainer.classList.remove("active");
   clearInterval(winInterval);
+
   Reloading();
 }
 

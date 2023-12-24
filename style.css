@@ -279,6 +279,7 @@ button {
 .menu_stat_bottom ul li {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 0.25rem;
 }
 .menu_stat_bottom ul li span {
@@ -287,7 +288,7 @@ button {
 .menu_stat_bottom ul li div {
   width: 25px;
   display: flex;
-  height: 120px;
+  height: 0;
   justify-content: center;
   align-items: end;
   background-color: var(--main_bg_col);
@@ -308,14 +309,14 @@ button {
 .menu_stat_bottom ul li:nth-child(5) div {
   animation-delay: 0.05s;
 }
-@keyframes staticAnim {
+/* @keyframes staticAnim {
   from {
-    height: 0px;
+    height: 100%;
   }
   to {
-    height: 120px;
+    height: 0px;
   }
-}
+} */
 .menu_game_start {
   text-align: center;
   margin-top: 1rem;
