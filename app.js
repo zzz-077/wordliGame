@@ -3,7 +3,6 @@
 /*==============================*/
 const keybinds = document.querySelectorAll(".key");
 const box = document.querySelectorAll(".box");
-const exitBtn = document.querySelector("#exit_btn");
 const startBtn = document.querySelector("#start_btn");
 const menuContainer = document.querySelector(".menu_container");
 const fullContainer = document.querySelector(".full_container");
@@ -13,7 +12,6 @@ const scoreBoxes = document.querySelectorAll(".scoreBoxes");
 const menuStatTopStr = document.querySelector(".menu_stat_top strong");
 
 startBtn.addEventListener("click", startFunc);
-// exitBtn.addEventListener("click", exitFunc);
 
 /*==============================*/
 /*=============VARIABLES============*/
@@ -35,23 +33,28 @@ let score = 0;
 let ScoreTable = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
   GuesWord = "TRUCK";
 let StoragedObject;
-let playedValue = 0;
+let played = 0;
 
 /*==============================*/
 /*=============LOCALSTORAGES============*/
 /*==============================*/
 document.addEventListener("DOMContentLoaded", () => {
+  // localStorage.clear();  
   if (!localStorage.getItem("scoretable")) {
     StoragedObject = JSON.stringify(ScoreTable);
     localStorage.setItem("scoretable", StoragedObject);
   }
-  // if (!localStorage.getItem("playedValue")) {
-  //   localStorage.setItem("playedValue");
-  // }
+  if (!localStorage.getItem("playedValue")) {
+    localStorage.setItem("playedValue", played);
+  }
+  if(!played){
+    menuStatTopStr.innerHTML=parseInt(localStorage.getItem("playedValue"));
+  }
 });
 /*==============================*/
 /*=============FUNCTIONS============*/
 /*==============================*/
+inputkeys();
 function startFunc() {
   menuContainer.classList.add("active");
   fullContainer.classList.add("active");
@@ -75,13 +78,17 @@ function Reloading() {
   Retrycounter = 0;
   sumK = 0;
   score = 0;
-  clearInterval(loseInterval);
+  played=0;
+  // clearInterval(loseInterval);
   console.log("Restarted");
 }
 
-inputkeys();
-localStorage.clear();
 function winGame() {
+  played=parseInt(localStorage.getItem("playedValue"))+1;
+  localStorage.setItem("playedValue", played)
+  if(played){
+    menuStatTopStr.innerHTML=parseInt(localStorage.getItem("playedValue"));
+  }
   ScoreTable[score]++;
   StoragedObject = JSON.stringify(ScoreTable);
   let backFromLocalStorage = localStorage.getItem("scoretable");
@@ -97,13 +104,21 @@ function winGame() {
 }
 
 function LoseGame() {
-  loseInterval = setInterval(() => {
+  played=parseInt(localStorage.getItem("playedValue"))+1;
+  localStorage.setItem("playedValue", played)
+  if(played){
+    menuStatTopStr.innerHTML=parseInt(localStorage.getItem("playedValue"));
+  }
+
+  // loseInterval = setInterval(() => {
     menuContainer.classList.remove("active");
     fullContainer.classList.remove("active");
+    
     displayBoxes.classList.remove("active");
     keyboardContainer.classList.remove("active");
+  // }, 1700);
+clearInterval(loseInterval)
     Reloading();
-  }, 1700);
 }
 
 function inputkeys() {
@@ -130,7 +145,9 @@ function inputkeys() {
       console.log(inputWordArr);
       if (Retrycounter == 6) {
         console.log("restarts from here");
-        LoseGame();
+        loseInterval = setInterval(() => {
+          LoseGame();
+        }, 1700);
       }
     });
   });
@@ -147,6 +164,7 @@ function deleteValue(index) {
     box[index].innerHTML = "";
   }
 }
+
 function enterValue() {
   sumK = 0;
   score++;
