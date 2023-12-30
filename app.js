@@ -10,9 +10,10 @@ const displayBoxes = document.querySelector(".display_boxes");
 const keyboardContainer = document.querySelector(".keyboard_container");
 const scoreBoxes = document.querySelectorAll(".scoreBoxes");
 const menuStatTopStr = document.querySelector(".menu_stat_top strong");
+const themeSwitchBtn = document.querySelector(".theme_switch_btn");
 
 startBtn.addEventListener("click", startFunc);
-
+themeSwitchBtn.addEventListener("click", themeSwitchFunc);
 /*==============================*/
 /*=============VARIABLES============*/
 /*==============================*/
@@ -66,6 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
 /*=============FUNCTIONS============*/
 /*==============================*/
 inputkeys();
+function themeSwitchFunc() {
+    document.querySelector(".theme_switch_btn").classList.toggle("light");
+    document.querySelector(".theme_switch_btn span").classList.toggle("light");
+    document.body.classList.toggle("dark_theme");
+}
+
 function startFunc() {
     menuContainer.classList.add("active");
     fullContainer.classList.add("active");
