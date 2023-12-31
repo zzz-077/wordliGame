@@ -18,7 +18,7 @@
                 <div class="nav_header">Wordle</div>
                 <ul>
                     <li>
-                        <button>
+                        <button class="info_btn">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
                     </li>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </nav>
-        <section class="full_container">
+        <section class="game_container">
             <div class="content">
                 <div class="boxes_container">
                     <div class="display_boxes">
@@ -107,7 +107,6 @@
                 </div>
             </div>
         </section>
-
         <section class="menu_container">
             <div class="menu_content">
                 <div class="menu_head">
@@ -149,6 +148,77 @@
                     </div>
                     <div class="menu_game_start">
                         <button id="start_btn">Start</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="info_container">
+            <div class="info_desk">
+                <div class="info_header">
+                    <div>
+                        <h1>How To Play</h1>
+                        <h2>Wordle</h2>
+                    </div>
+                    <button><i class="fa fa-remove"></i></button>
+                </div>
+                <div class="info_body">
+                    <div class="info_body_principle">
+                        <h2>Guess the Woordle in 6 tries.</h2>
+                        <ul>
+                            <li>
+                                <p>Each guess must be a valid 5-letter word.</p>
+                            </li>
+                            <li>
+                                <p>
+                                    The color of the tiles will change to show
+                                    how close your guess was to the word.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info_body_examples">
+                        <h3>Examples</h3>
+                        <ul>
+                            <li>
+                                <p>
+                                    <strong>W</strong> is in the word and in the
+                                    correct spot.
+                                </p>
+                                <div class="example_coumn">
+                                    <div>W</div>
+                                    <div>E</div>
+                                    <div>A</div>
+                                    <div>R</div>
+                                    <div>Y</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong>I</strong> is in the word but in the
+                                    wrong spot.
+                                </p>
+                                <div class="example_coumn">
+                                    <div class="example_box">P</div>
+                                    <div class="example_box">I</div>
+                                    <div class="example_box">L</div>
+                                    <div class="example_box">L</div>
+                                    <div class="example_box">S</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong>U</strong> is not in the word in any
+                                    spot.
+                                </p>
+                                <div class="example_coumn">
+                                    <div class="example_box">V</div>
+                                    <div class="example_box">A</div>
+                                    <div class="example_box">G</div>
+                                    <div class="example_box">U</div>
+                                    <div class="example_box">E</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

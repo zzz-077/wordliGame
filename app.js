@@ -1,22 +1,28 @@
-/*==============================*/
+/*============================*/
 /*=============DOM============*/
-/*==============================*/
+/*============================*/
 const keybinds = document.querySelectorAll(".key");
 const box = document.querySelectorAll(".box");
 const startBtn = document.querySelector("#start_btn");
 const menuContainer = document.querySelector(".menu_container");
-const fullContainer = document.querySelector(".full_container");
+const gameContainer = document.querySelector(".game_container");
 const displayBoxes = document.querySelector(".display_boxes");
 const keyboardContainer = document.querySelector(".keyboard_container");
 const scoreBoxes = document.querySelectorAll(".scoreBoxes");
 const menuStatTopStr = document.querySelector(".menu_stat_top strong");
 const themeSwitchBtn = document.querySelector(".theme_switch_btn");
+const infoBtn = document.querySelector(".info_btn");
+const infoRemoveBtn = document.querySelector(".info_header button");
+const infoContainer = document.querySelector(".info_container");
+const infoDesk = document.querySelector(".info_desk");
 
 startBtn.addEventListener("click", startFunc);
 themeSwitchBtn.addEventListener("click", themeSwitchFunc);
-/*==============================*/
+infoBtn.addEventListener("click", infoBoardOpen);
+infoRemoveBtn.addEventListener("click", infoBoardClose);
+/*==================================*/
 /*=============VARIABLES============*/
-/*==============================*/
+/*==================================*/
 let keyValue,
     index = -1;
 let columns = 5;
@@ -36,9 +42,9 @@ let ScoreTable = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
 let StoragedObject;
 let played = 0;
 let parsedvaluefrommLS;
-/*==============================*/
+/*======================================*/
 /*=============LOCALSTORAGES============*/
-/*==============================*/
+/*======================================*/
 document.addEventListener("DOMContentLoaded", () => {
     // localStorage.clear();
     if (!localStorage.getItem("scoretable")) {
@@ -63,19 +69,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-/*==============================*/
+/*==================================*/
 /*=============FUNCTIONS============*/
-/*==============================*/
+/*==================================*/
 inputkeys();
 function themeSwitchFunc() {
     document.querySelector(".theme_switch_btn").classList.toggle("light");
     document.querySelector(".theme_switch_btn span").classList.toggle("light");
     document.body.classList.toggle("dark_theme");
 }
+function infoBoardOpen() {
+    infoContainer.classList.add("active");
+    infoDesk.classList.add("active");
+}
+function infoBoardClose() {
+    infoContainer.classList.remove("active");
+    infoDesk.classList.remove("active");
+}
 
 function startFunc() {
     menuContainer.classList.add("active");
-    fullContainer.classList.add("active");
+    gameContainer.classList.add("active");
     displayBoxes.classList.add("active");
     keyboardContainer.classList.add("active");
 }
@@ -123,7 +137,7 @@ function winGame() {
 
     console.log("YOU WIN");
     menuContainer.classList.remove("active");
-    fullContainer.classList.remove("active");
+    gameContainer.classList.remove("active");
     clearInterval(winInterval);
 
     Reloading();
@@ -140,7 +154,7 @@ function LoseGame() {
 
     // loseInterval = setInterval(() => {
     menuContainer.classList.remove("active");
-    fullContainer.classList.remove("active");
+    gameContainer.classList.remove("active");
 
     displayBoxes.classList.remove("active");
     keyboardContainer.classList.remove("active");
