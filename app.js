@@ -37,12 +37,23 @@ let loseInterval;
 let winInterval;
 let sumK = 0;
 let score = 0;
-let ScoreTable = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
-    GuesWord = "TRUCK";
+let ScoreTable = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+let GuesWord = "TRUCK";
+// let GuesWord = "";
 let StoragedObject;
 let played = 0;
 let parsedvaluefrommLS;
 /*======================================*/
+/*=============GUESSWORD============*/
+/*======================================*/
+// fetch("/data/words.json")
+//     .then((res) => res.json())
+//     .then((word) => {
+//         let GuesWordIndex = Math.floor(Math.random() * 9079 + 1);
+//         GuesWord = word[GuesWordIndex].toUpperCase();
+
+//         console.log(GuesWord);
+//     });
 /*=============LOCALSTORAGES============*/
 /*======================================*/
 document.addEventListener("DOMContentLoaded", () => {
@@ -184,7 +195,7 @@ function inputkeys() {
                 index++;
                 InputValue(keyValue, index);
             }
-            console.log(inputWordArr);
+            // console.log(inputWordArr);
             if (Retrycounter == 6) {
                 console.log("restarts from here");
                 loseInterval = setInterval(() => {
@@ -210,81 +221,103 @@ function deleteValue(index) {
 function enterValue() {
     sumK = 0;
     score++;
-    let isAlreadyArr = [];
     const keybindsArray = Array.from(keybinds);
     const BoxArray = Array.from(box);
-
+    let GreencheckArr = [];
+    let YellowcheckArr = [];
     for (let i = 0; i < inputWordArr.length; i++) {
-        let p = true,
-            colorCheck = true;
+        let colorCheck = true,
+            p = true,
+            p2 = true;
         let k = 0;
         const uniqArr = new Set();
         for (let j = 0; j < inputWordArr.length; j++) {
             if (inputWordArr[i] == GuesWord[j]) {
-                for (let t = 0; t < isAlreadyArr.length; t++) {
-                    if (j == isAlreadyArr[t]) {
-                        p = false;
-                        break;
-                    }
-                }
-                if (p == false) {
-                    continue;
-                } else {
-                    isAlreadyArr.push(j);
-                    /*===ADDING GREEN===*/
-                    /*===ADDING YELLOW===*/
-                    if (i == j) {
-                        sumK++;
+                /*===ADDING GREEN===*/
+                /*===ADDING YELLOW===*/
+                if (i == j) {
+                    GreencheckArr.push(i);
+                    sumK++;
+                    if (box[PreOrderedNum + i].classList.contains("yellow")) {
+                        box[PreOrderedNum + i].classList.remove(
+                            "transition",
+                            "yellow"
+                        );
                         box[PreOrderedNum + i].classList.add(
                             "transition",
                             "green"
                         );
-                        if (
-                            keybinds instanceof NodeList ||
-                            Array.isArray(keybinds)
-                        ) {
-                            greenKey = keybindsArray.find((Key) => {
-                                return Key.value === inputWordArr[i];
-                            });
-                            greenKey.classList.remove("yellow");
-                            greenKey.classList.add("green");
-                        }
                     } else {
                         box[PreOrderedNum + i].classList.add(
                             "transition",
-                            "yellow"
+                            "green"
                         );
-
-                        if (
-                            keybinds instanceof NodeList ||
-                            Array.isArray(keybinds)
-                        ) {
-                            yellowKey = keybindsArray.find((Key) => {
-                                return Key.value === inputWordArr[i];
-                            });
-                            if (!yellowKey.classList.contains("green")) {
-                                yellowKey.classList.add("yellow");
-                            }
+                    }
+                    if (
+                        keybinds instanceof NodeList ||
+                        Array.isArray(keybinds)
+                    ) {
+                        greenKey = keybindsArray.find((Key) => {
+                            return Key.value === inputWordArr[i];
+                        });
+                        greenKey.classList.remove("yellow");
+                        greenKey.classList.add("green");
+                    }
+                    break;
+                } else {
+                    for (let r = 0; r < GreencheckArr.length; r++) {
+                        if (j == GreencheckArr[r]) {
+                            p = false;
+                            break;
                         }
                     }
-                    colorCheck = false;
+                    for (let r = 0; r < YellowcheckArr.length; r++) {
+                        if (j == YellowcheckArr[r]) {
+                            p2 = false;
+                            break;
+                        }
+                    }
+                    if (p == true && p2 == true) {
+                        YellowcheckArr.push(i);
+                        if (
+                            !box[PreOrderedNum + i].classList.contains("green")
+                        ) {
+                            box[PreOrderedNum + i].classList.add(
+                                "transition",
+                                "yellow"
+                            );
+                        }
+                    }
+                    if (
+                        keybinds instanceof NodeList ||
+                        Array.isArray(keybinds)
+                    ) {
+                        yellowKey = keybindsArray.find((Key) => {
+                            return Key.value === inputWordArr[i];
+                        });
+                        if (!yellowKey.classList.contains("green")) {
+                            yellowKey.classList.add("yellow");
+                        }
+                    }
                 }
+                colorCheck = false;
             } else {
                 k++;
                 continue;
             }
         }
-        // if(){
-        // }
+        if (!box[PreOrderedNum + i].classList.contains("transition")) {
+            box[PreOrderedNum + i].classList.add("transition", "gray");
+        }
         if (k == 5) {
             uniqArr.add([inputWordArr[i]]);
             k = 0;
+            console.log(i);
         }
+
         let checkArr = [...uniqArr];
         /*===ADDING GRAY===*/
         if (colorCheck == true) {
-            // console.log("[" + i + "]: " + "add-Gray");
-            box[PreOrderedNum + i].classList.add("transition", "gray");
             for (let k = 0; k < checkArr.length; k++) {
                 if (checkArr[i] != inputWordArr[i] || i == 0) {
                     if (
