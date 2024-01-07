@@ -1,227 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="icon" href="/img/Logo.png" />
-        <script
-            src="https://kit.fontawesome.com/47912b74b2.js"
-            crossorigin="anonymous"
-        ></script>
-        <script src="app.js" defer></script>
-    </head>
-    <body>
-        <nav>
-            <div class="navbar">
-                <div class="nav_header">Wordle</div>
-                <ul>
-                    <li>
-                        <button class="info_btn">
-                            <i class="fa-solid fa-circle-question"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <div class="theme_switch_btn">
-                            <span></span>
-                        </div>
-                    </li>
-                </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/img/Logo.png" />
+    <script
+      src="https://kit.fontawesome.com/47912b74b2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <div class="nav_header">Wordle</div>
+        <ul>
+          <li>
+            <button class="info_btn">
+              <i class="fa-solid fa-circle-question"></i>
+            </button>
+          </li>
+          <li>
+            <div class="theme_switch_btn">
+              <span></span>
             </div>
-        </nav>
-        <section class="game_container">
-            <div class="content">
-                <div class="boxes_container">
-                    <div class="display_boxes">
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                        <div class="box"></div>
-                    </div>
-                </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-                <div class="keyboard_container">
-                    <div class="col1">
-                        <button class="key" value="Q">Q</button>
-                        <button class="key" value="W">W</button>
-                        <button class="key" value="E">E</button>
-                        <button class="key" value="R">R</button>
-                        <button class="key" value="T">T</button>
-                        <button class="key" value="Y">Y</button>
-                        <button class="key" value="U">U</button>
-                        <button class="key" value="I">I</button>
-                        <button class="key" value="O">O</button>
-                        <button class="key" value="P">P</button>
-                    </div>
-                    <div class="col1">
-                        <button class="key" value="A">A</button>
-                        <button class="key" value="S">S</button>
-                        <button class="key" value="D">D</button>
-                        <button class="key" value="F">F</button>
-                        <button class="key" value="G">G</button>
-                        <button class="key" value="H">H</button>
-                        <button class="key" value="J">J</button>
-                        <button class="key" value="K">K</button>
-                        <button class="key" value="L">L</button>
-                    </div>
-                    <div class="col1">
-                        <button class="key" value="ent">Enter</button>
-                        <button class="key" value="Z">Z</button>
-                        <button class="key" value="X">X</button>
-                        <button class="key" value="C">C</button>
-                        <button class="key" value="V">V</button>
-                        <button class="key" value="B">B</button>
-                        <button class="key" value="N">N</button>
-                        <button class="key" value="M">M</button>
-                        <button class="key" value="del">
-                            <i class="fa-solid fa-delete-left"></i>
-                        </button>
-                    </div>
+    <section class="game_container">
+      <div class="content">
+        <div class="alert_box">
+          <div>
+            <h1>Not enought letters!</h1>
+          </div>
+          <div>
+            <h1>Not such word!</h1>
+          </div>
+        </div>
+        <div class="boxes_container">
+          <div class="display_boxes">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+          </div>
+        </div>
+        <div class="keyboard_container">
+          <div class="col1">
+            <button class="key" value="Q">Q</button>
+            <button class="key" value="W">W</button>
+            <button class="key" value="E">E</button>
+            <button class="key" value="R">R</button>
+            <button class="key" value="T">T</button>
+            <button class="key" value="Y">Y</button>
+            <button class="key" value="U">U</button>
+            <button class="key" value="I">I</button>
+            <button class="key" value="O">O</button>
+            <button class="key" value="P">P</button>
+          </div>
+          <div class="col1">
+            <button class="key" value="A">A</button>
+            <button class="key" value="S">S</button>
+            <button class="key" value="D">D</button>
+            <button class="key" value="F">F</button>
+            <button class="key" value="G">G</button>
+            <button class="key" value="H">H</button>
+            <button class="key" value="J">J</button>
+            <button class="key" value="K">K</button>
+            <button class="key" value="L">L</button>
+          </div>
+          <div class="col1">
+            <button class="key" value="ent">Enter</button>
+            <button class="key" value="Z">Z</button>
+            <button class="key" value="X">X</button>
+            <button class="key" value="C">C</button>
+            <button class="key" value="V">V</button>
+            <button class="key" value="B">B</button>
+            <button class="key" value="N">N</button>
+            <button class="key" value="M">M</button>
+            <button class="key" value="del">
+              <i class="fa-solid fa-delete-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="menu_container">
+      <div class="menu_content">
+        <div class="menu_head">
+          <h3>STATISTICS</h3>
+        </div>
+        <div class="menu_stat">
+          <div class="menu_stat_top">
+            <strong>0</strong>
+            <p>played</p>
+          </div>
+          <div class="menu_stat_bottom">
+            <ul>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>1</span>
+              </li>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>2</span>
+              </li>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>3</span>
+              </li>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>4</span>
+              </li>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>5</span>
+              </li>
+              <li>
+                <div class="scoreBoxes">0</div>
+                <span>6</span>
+              </li>
+            </ul>
+            <p>Guess</p>
+          </div>
+          <div class="menu_game_start">
+            <button id="start_btn">Start</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="info_container">
+      <div class="info_desk">
+        <div class="info_header">
+          <div>
+            <h1>How To Play</h1>
+            <h2>Wordle</h2>
+          </div>
+          <button><i class="fa fa-remove"></i></button>
+        </div>
+        <div class="info_body">
+          <div class="info_body_principle">
+            <h2>Guess the Woordle in 6 tries.</h2>
+            <ul>
+              <li>
+                <p>Each guess must be a valid 5-letter word.</p>
+              </li>
+              <li>
+                <p>
+                  The color of the tiles will change to show how close your
+                  guess was to the word.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="info_body_examples">
+            <h3>Examples</h3>
+            <ul>
+              <li>
+                <p>
+                  <strong>W</strong> is in the word and in the correct spot.
+                </p>
+                <div class="example_coumn">
+                  <div>W</div>
+                  <div>E</div>
+                  <div>A</div>
+                  <div>R</div>
+                  <div>Y</div>
                 </div>
-            </div>
-        </section>
-        <section class="menu_container">
-            <div class="menu_content">
-                <div class="menu_head">
-                    <h3>STATISTICS</h3>
+              </li>
+              <li>
+                <p><strong>I</strong> is in the word but in the wrong spot.</p>
+                <div class="example_coumn">
+                  <div class="example_box">P</div>
+                  <div class="example_box">I</div>
+                  <div class="example_box">L</div>
+                  <div class="example_box">L</div>
+                  <div class="example_box">S</div>
                 </div>
-                <div class="menu_stat">
-                    <div class="menu_stat_top">
-                        <strong>0</strong>
-                        <p>played</p>
-                    </div>
-                    <div class="menu_stat_bottom">
-                        <ul>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>1</span>
-                            </li>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>2</span>
-                            </li>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>3</span>
-                            </li>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>4</span>
-                            </li>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>5</span>
-                            </li>
-                            <li>
-                                <div class="scoreBoxes">0</div>
-                                <span>6</span>
-                            </li>
-                        </ul>
-                        <p>Guess</p>
-                    </div>
-                    <div class="menu_game_start">
-                        <button id="start_btn">Start</button>
-                    </div>
+              </li>
+              <li>
+                <p><strong>U</strong> is not in the word in any spot.</p>
+                <div class="example_coumn">
+                  <div class="example_box">V</div>
+                  <div class="example_box">A</div>
+                  <div class="example_box">G</div>
+                  <div class="example_box">U</div>
+                  <div class="example_box">E</div>
                 </div>
-            </div>
-        </section>
-        <section class="info_container">
-            <div class="info_desk">
-                <div class="info_header">
-                    <div>
-                        <h1>How To Play</h1>
-                        <h2>Wordle</h2>
-                    </div>
-                    <button><i class="fa fa-remove"></i></button>
-                </div>
-                <div class="info_body">
-                    <div class="info_body_principle">
-                        <h2>Guess the Woordle in 6 tries.</h2>
-                        <ul>
-                            <li>
-                                <p>Each guess must be a valid 5-letter word.</p>
-                            </li>
-                            <li>
-                                <p>
-                                    The color of the tiles will change to show
-                                    how close your guess was to the word.
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="info_body_examples">
-                        <h3>Examples</h3>
-                        <ul>
-                            <li>
-                                <p>
-                                    <strong>W</strong> is in the word and in the
-                                    correct spot.
-                                </p>
-                                <div class="example_coumn">
-                                    <div>W</div>
-                                    <div>E</div>
-                                    <div>A</div>
-                                    <div>R</div>
-                                    <div>Y</div>
-                                </div>
-                            </li>
-                            <li>
-                                <p>
-                                    <strong>I</strong> is in the word but in the
-                                    wrong spot.
-                                </p>
-                                <div class="example_coumn">
-                                    <div class="example_box">P</div>
-                                    <div class="example_box">I</div>
-                                    <div class="example_box">L</div>
-                                    <div class="example_box">L</div>
-                                    <div class="example_box">S</div>
-                                </div>
-                            </li>
-                            <li>
-                                <p>
-                                    <strong>U</strong> is not in the word in any
-                                    spot.
-                                </p>
-                                <div class="example_coumn">
-                                    <div class="example_box">V</div>
-                                    <div class="example_box">A</div>
-                                    <div class="example_box">G</div>
-                                    <div class="example_box">U</div>
-                                    <div class="example_box">E</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </body>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
